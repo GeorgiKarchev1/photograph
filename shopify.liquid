@@ -1,0 +1,553 @@
+<div
+  id="bundles-section"
+  class="bundle-container"
+  data-variant-id="52864081363283"
+  data-variant2-id="52864145031507"
+  data-variant3-id="52867385885011"
+  data-page="{{ request.page_type }}"
+>
+  <h3 class="bundle-title">Избери количество</h3>
+
+  <div class="bundle-grid">
+    <!-- 1 Опаковка -->
+    <button type="button" class="bundle-card is-active" data-qty="1" aria-pressed="true">
+      <div class="bundle-image">
+        <img
+          src="https://cdn.shopify.com/s/files/1/1012/2802/0051/files/viber_image_2026-02-17_17-44-51-832.png?v=1772489539"
+          alt="{{ product.title }} - 1 опаковка"
+          loading="lazy"
+        >
+      </div>
+      <div class="bundle-info">
+        <div class="bundle-name">Купи 1 чифт протектори <span class="discount">50% отстъпка</span></div>
+        <div class="bundle-price">
+          <div class="price-discounted">22.96€ <span class="bgn-price">(44.91 лв)</span></div>
+          <div class="price-original">45.97€ <span class="bgn-price">(89.92 лв)</span></div>
+        </div>
+      </div>
+    </button>
+
+    <!-- 2 Опаковки -->
+    <button type="button" class="bundle-card" data-qty="2" aria-pressed="false">
+      <div class="bundle-image">
+        <img
+          src="https://cdn.shopify.com/s/files/1/1012/2802/0051/files/viber_image_2026-02-17_17-45-04-386.png?v=1772489539"
+          alt="{{ product.title }} - 2 опаковки"
+          loading="lazy"
+        >
+      </div>
+      <div class="bundle-info">
+        <div class="bundle-name">Купи 2 чифта протектори <span class="discount">55% отстъпка</span></div>
+        <div class="bundle-price">
+          <div class="price-discounted">40.87€ <span class="bgn-price">(79.96 лв)</span></div>
+          <div class="price-original">91.93€ <span class="bgn-price">(179.84 лв)</span></div>
+        </div>
+      </div>
+    </button>
+
+    <!-- 3 Опаковки -->
+    <button type="button" class="bundle-card" data-qty="3" aria-pressed="false">
+      <div class="bundle-image">
+        <div class="free-shipping-badge">⚡ БЕЗПЛАТНА ДОСТАВКА</div>
+        <img
+          src="https://cdn.shopify.com/s/files/1/1012/2802/0051/files/viber_image_2026-02-17_17-45-17-894.png?v=1772489539"
+          alt="{{ product.title }} - 3 опаковки"
+          loading="lazy"
+        >
+      </div>
+      <div class="bundle-info">
+        <div class="bundle-name">Купи 3 чифта протектори <span class="discount">60% отстъпка</span></div>
+        <div class="bundle-price">
+          <div class="price-discounted">57.17€ <span class="bgn-price">(111.84 лв)</span></div>
+          <div class="price-original">137.90€ <span class="bgn-price">(269.76 лв)</span></div>
+        </div>
+      </div>
+    </button>
+  </div>
+
+  <div class="bundle-actions">
+    <button type="button" class="bundle-add">Добави в количката</button>
+  </div>
+</div>
+
+<style>
+  /* Base Reset */
+  * {
+    box-sizing: border-box;
+  }
+
+  .bundle-container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 0 16px;
+  }
+
+  .bundle-title {
+    font-weight: 800;
+    text-align: center;
+    margin: 0 0 24px;
+    color: #fff;
+    font-size: 1.75rem;
+    letter-spacing: -0.5px;
+  }
+
+  /* Grid - Mobile First Approach */
+  .bundle-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  /* Card Styling - Dark Theme with Neon Green */
+  .bundle-card {
+    position: relative;
+    background: #1a1a1a;
+    border: 2px solid #2a2a2a;
+    border-radius: 20px;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .bundle-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(178, 254, 2, 0.2);
+    border-color: #b2fe02;
+  }
+
+  /* Image Section */
+  .bundle-image {
+    position: relative;
+    width: 100%;
+    padding: 40px 20px 20px;
+    background: linear-gradient(180deg, #242424 0%, #1a1a1a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+    overflow: visible;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .bundle-image img {
+    max-width: 100%;
+    max-height: 140px;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+    filter: drop-shadow(0 8px 20px rgba(178, 254, 2, 0.15));
+  }
+
+  .bundle-card:hover .bundle-image img {
+    transform: scale(1.08);
+  }
+
+  /* Free Shipping Badge - Neon Green */
+  .free-shipping-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #b2fe02 0%, #9ed600 100%);
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 900;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 20;
+    box-shadow: 0 4px 20px rgba(178, 254, 2, 0.6);
+    white-space: nowrap;
+    animation: pulse-badge 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-badge {
+    0%,
+    100% {
+      box-shadow: 0 4px 20px rgba(178, 254, 2, 0.6);
+    }
+    50% {
+      box-shadow: 0 4px 30px rgba(178, 254, 2, 0.9);
+    }
+  }
+
+  /* Content Section */
+  .bundle-info {
+    padding: 24px 20px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: #1a1a1a;
+    border-radius: 0 0 18px 18px;
+  }
+
+  /* Bundle Name */
+  .bundle-name {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.5;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .bundle-name .discount {
+    color: #b2fe02;
+    font-size: 1.1rem;
+    font-weight: 900;
+    display: inline-block;
+    background: rgba(178, 254, 2, 0.1);
+    padding: 4px 12px;
+    border-radius: 8px;
+  }
+
+  /* Prices */
+  .bundle-price {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+    align-items: center;
+  }
+
+  .price-discounted {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: #b2fe02;
+    line-height: 1.2;
+    text-shadow: 0 0 20px rgba(178, 254, 2, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .bgn-price {
+    font-size: 0.65em;
+    opacity: 0.9;
+    font-weight: 700;
+  }
+
+  .price-original {
+    font-size: 0.95rem;
+    color: #666;
+    text-decoration: line-through;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .price-original .bgn-price {
+    font-size: 0.85em;
+  }
+
+  /* Active State - Full Neon Glow */
+  .bundle-card.is-active {
+    border-color: #b2fe02;
+    border-width: 3px;
+    background: linear-gradient(180deg, #1f2610 0%, #1a1a1a 100%);
+    box-shadow: 0 0 40px rgba(178, 254, 2, 0.35), 0 8px 50px rgba(178, 254, 2, 0.25),
+      inset 0 0 60px rgba(178, 254, 2, 0.05);
+    transform: scale(1.02);
+  }
+
+  .bundle-card.is-active .bundle-image {
+    background: linear-gradient(180deg, #2a3015 0%, #1f2610 100%);
+  }
+
+  /* Checkmark - Black on Neon */
+  .bundle-card::before {
+    content: '✓';
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 36px;
+    height: 36px;
+    background: #b2fe02;
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 20px;
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 15;
+    box-shadow: 0 4px 20px rgba(178, 254, 2, 0.6);
+  }
+
+  .bundle-card.is-active::before {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+
+  /* Focus state */
+  .bundle-card:focus {
+    outline: none;
+  }
+
+  .bundle-card:focus-visible {
+    outline: 3px solid #b2fe02;
+    outline-offset: 4px;
+  }
+
+  /* Add to Cart Button */
+  .bundle-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 24px;
+    padding: 0 16px;
+    gap: 8px;
+  }
+
+  .bundle-add {
+    width: 100%;
+    max-width: 500px;
+    min-height: 60px;
+    padding: 18px 32px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #b2fe02 0%, #9ed600 100%);
+    color: #000 !important;
+    font-weight: 900;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 25px rgba(178, 254, 2, 0.45);
+  }
+
+  .bundle-add:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 35px rgba(178, 254, 2, 0.65);
+  }
+
+  .bundle-add:active {
+    transform: scale(0.98);
+  }
+
+  /* ==================== RESPONSIVE DESIGN ==================== */
+  /* Single column layout on ALL screen sizes */
+
+  /* Mobile styles */
+  @media (max-width: 600px) {
+    .bundle-container {
+      padding: 0 12px;
+      margin: 1.5rem auto;
+    }
+
+    .bundle-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .bundle-image {
+      min-height: 140px;
+      padding: 35px 16px 16px;
+    }
+
+    .bundle-image img {
+      max-height: 120px;
+    }
+
+    .bundle-info {
+      padding: 20px 16px 24px;
+    }
+
+    .bundle-name {
+      font-size: 1rem;
+    }
+
+    .bundle-name .discount {
+      font-size: 1.05rem;
+    }
+
+    .price-discounted {
+      font-size: 1.6rem;
+    }
+
+    .price-original {
+      font-size: 0.9rem;
+    }
+
+    .free-shipping-badge {
+      font-size: 0.7rem;
+      padding: 8px 16px;
+      top: -12px;
+    }
+
+    .bundle-card::before {
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+      top: 14px;
+      left: 14px;
+    }
+
+    .bundle-add {
+      font-size: 1rem;
+      min-height: 56px;
+      padding: 16px 24px;
+    }
+  }
+
+  /* Tablet and Desktop - Centered single column with max-width */
+  @media (min-width: 601px) {
+    .bundle-container {
+      padding: 0 20px;
+    }
+
+    .bundle-title {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+
+    .bundle-grid {
+      max-width: 400px;
+      margin: 0 auto;
+      gap: 16px;
+    }
+
+    .bundle-image {
+      min-height: 130px;
+      padding: 35px 20px 18px;
+    }
+
+    .bundle-image img {
+      max-height: 110px;
+    }
+
+    .bundle-info {
+      padding: 18px 20px 22px;
+    }
+
+    .bundle-name {
+      font-size: 0.95rem;
+    }
+
+    .bundle-name .discount {
+      font-size: 1rem;
+    }
+
+    .price-discounted {
+      font-size: 1.5rem;
+    }
+
+    .price-original {
+      font-size: 0.9rem;
+    }
+
+    .free-shipping-badge {
+      font-size: 0.75rem;
+      padding: 8px 18px;
+    }
+
+    .bundle-card::before {
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+      top: 14px;
+      left: 14px;
+    }
+
+    .bundle-add {
+      max-width: 400px;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const root = document.querySelector('.bundle-container');
+    if (!root) return;
+
+    const variantId = Number(root.dataset.variantId);
+    const variant2Id = Number(root.dataset.variant2Id);
+    const variant3Id = Number(root.dataset.variant3Id);
+
+    const cards = root.querySelectorAll('.bundle-card');
+    const addBtn = root.querySelector('.bundle-add');
+
+    let selected = root.querySelector('.bundle-card.is-active') || cards[0];
+
+    cards.forEach((c) =>
+      c.addEventListener('click', () => {
+        cards.forEach((x) => {
+          x.classList.remove('is-active');
+          x.setAttribute('aria-pressed', 'false');
+        });
+        c.classList.add('is-active');
+        c.setAttribute('aria-pressed', 'true');
+        selected = c;
+      })
+    );
+
+    async function addMany(items) {
+      const res = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ items }),
+      });
+
+      // Ако Shopify върне грешка (напр. няма наличност), я хвърляме
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.description || 'Грешка при добавяне');
+      }
+      return await res.json();
+    }
+
+    addBtn.addEventListener('click', async () => {
+      try {
+        const qty = Number(selected.dataset.qty || '1');
+        const items = [];
+
+        if (qty === 1) {
+          items.push({ id: variantId, quantity: 1 });
+        } else if (qty === 2) {
+          // Ако имаме ID за 2 опаковки (намалената цена), добавяме 2 броя от него
+          if (variant2Id) {
+            items.push({ id: variant2Id, quantity: 2 });
+          } else {
+            // Fallback: Ако нещо стане с ID-то, добавяме 2 от нормалния
+            items.push({ id: variantId, quantity: 2 });
+          }
+        } else if (qty === 3) {
+          // Ако имаме ID за 3 опаковки (намалената цена), добавяме 1 брой от него (вече е бъндъл)
+          if (variant3Id) {
+            items.push({ id: variant3Id, quantity: 1 });
+          } else {
+            // Fallback
+            items.push({ id: variantId, quantity: 3 });
+          }
+        }
+
+        addBtn.textContent = 'Добавяне...';
+        await addMany(items);
+        window.location.assign('/cart');
+      } catch (e) {
+        console.error(e);
+        addBtn.textContent = 'Добави в количката';
+        alert('Възникна грешка: ' + e.message);
+      }
+    });
+  })();
+</script>
