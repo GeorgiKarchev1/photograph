@@ -69,4 +69,38 @@ document.addEventListener('DOMContentLoaded', () => {
       ticking = true;
     }
   });
+
+  // Contact Form
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Изпращане...';
+
+      try {
+        const response = await fetch('https://formspree.io/f/xnjorwle', {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { Accept: 'application/json' },
+        });
+
+        if (response.ok) {
+          contactForm.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'flex';
+        } else {
+          const data = await response.json();
+          const msg = data.errors ? data.errors.map(err => err.message).join(', ') : 'Грешка при изпращане. Моля, опитайте отново.';
+          alert(msg);
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Изпрати съобщение';
+        }
+      } catch {
+        alert('Грешка при изпращане. Моля, опитайте отново.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Изпрати съобщение';
+      }
+    });
+  }
 });

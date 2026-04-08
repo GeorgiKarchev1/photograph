@@ -50,10 +50,18 @@
     <section id="about" class="about-section">
       <div class="container">
         <div class="about-grid">
-          <div class="about-text fade-in-section">
-            <h2 class="section-title">Внимание към <br />всеки <span class="accent-text">детайл</span></h2>
-            <p>Аз вярвам, че всяко събитие носи своя уникална атмосфера. Моята мисия е да уловя тази енергия и да я превърна в изкуство, което ще ви вълнува дълго след като денят е отминал.</p>
-            <p>С безкомпромисно внимание към детайла и страст към визуалното съвършенство, аз комбинирам филмова естетика с автентична емоция. Вашата история заслужава да бъде разказана красиво.</p>
+          <div class="about-visual fade-in-section">
+            <div class="image-wrapper portrait-wrapper">
+              <img src="/yordan.jpg" alt="Йордан Колев — фотограф" class="about-img main-img portrait-img" />
+              <div class="decorative-box"></div>
+            </div>
+          </div>
+          <div class="about-text fade-in-section delay-1">
+            <p class="partners-label">За мен</p>
+            <h2 class="section-title">Йордан <span class="accent-text">Колев</span></h2>
+            <p>Казвам се Йордан и снимам от над десет години. Специализирам в сватбена, семейна и корпоративна фотография — всеки жанр с едно и също отношение: да уловя момента такъв, какъвто е, без излишна постановка.</p>
+            <p>Работя с естествена светлина и внимание към детайла. Вярвам, че най-стойностните снимки не се режисират — те се улавят в точния момент.</p>
+            <p class="location-note">📍 Базиран в <strong>Пловдив</strong> — снимам проекти из цяла <strong>България</strong>.</p>
 
             <div class="stats-row">
               <div class="stat-item">
@@ -66,21 +74,80 @@
               </div>
             </div>
           </div>
-          <div class="about-visual fade-in-section delay-1">
-            <div class="image-wrapper">
-              <img src="/hero.png" alt="Yordan behind the scenes" class="about-img main-img" />
-              <div class="decorative-box"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="partners" class="partners-section">
+      <div class="container">
+        <div class="partners-split fade-in-section">
+          <div class="partners-split-visual">
+            <img src="/bobby.webp" alt="BS Video екип на снимачна площадка" class="partner-bg-photo" />
+            <div class="partner-photo-overlay"></div>
+            <div class="partner-visual-content">
+              <span class="partner-collab-tag">Фото &amp; Видео</span>
+              <a href="https://bsvideo.bg/" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
+                <img src="/logo.png" alt="BS Video" class="partner-logo-img" />
+              </a>
             </div>
+          </div>
+          <div class="partners-split-content">
+            <h2 class="section-title">Когато снимката <br />среща <span class="accent-text">киното.</span></h2>
+            <p>Всяка история заслужава да бъде разказана в пълнота. За проекти, изискващи пълноценно аудио-визуално присъствие, работя рамо до рамо с екипа на <strong>BS Video</strong> — спиращи дъха визуални разкази от сватби и кръщенета до корпоративни продукции.</p>
+            <a href="https://bsvideo.bg/" target="_blank" rel="noopener noreferrer" class="btn btn-outline partner-btn">Разгледай bsvideo.bg →</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="cta-section">
-      <div class="container text-center fade-in-section">
-        <h2 class="section-title">Време е да разкажем вашата <span class="accent-text">история.</span></h2>
-        <p class="cta-subtitle">Свържете се с мен днес, за да обсъдим идеите ви и да ги превърнем в реалност.</p>
-        <a href="mailto:hello@yordan.bg" class="btn btn-primary pulse-btn">Свържи се с мен</a>
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info fade-in-section">
+            <p class="partners-label">Свържете се</p>
+            <h2 class="section-title">Нека разкажем вашата <span class="accent-text">история.</span></h2>
+            <p class="contact-desc">Базиран в <strong>Пловдив</strong>, но пътувам и снимам проекти из цяла България. Свържете се с мен и ще обсъдим вашата идея.</p>
+            <div class="contact-details">
+              <a href="tel:+359885655563" class="contact-detail-item">
+                <span class="contact-detail-icon">✆</span>
+                <span>+359 885 655 563</span>
+              </a>
+              <a href="mailto:jkphotography@abv.bg" class="contact-detail-item">
+                <span class="contact-detail-icon">✉</span>
+                <span>jkphotography@abv.bg</span>
+              </a>
+              <div class="contact-detail-item">
+                <span class="contact-detail-icon">⌖</span>
+                <span>Пловдив — цяла България</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form-wrapper fade-in-section delay-1">
+            <form class="contact-form" id="contactForm">
+              <div class="form-group">
+                <label for="name">Вашето име</label>
+                <input type="text" id="name" name="name" placeholder="Йордан Колев" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Имейл адрес</label>
+                <input type="email" id="email" name="email" placeholder="vashiyat@email.com" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Телефон <span class="optional">(по желание)</span></label>
+                <input type="tel" id="phone" name="phone" placeholder="+359 8XX XXX XXX" />
+              </div>
+              <div class="form-group">
+                <label for="message">Разкажете ми за вашия проект</label>
+                <textarea id="message" name="message" rows="4" placeholder="Сватба, кръщене, корпоративна снимка..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary contact-submit" id="submitBtn">Изпрати съобщение</button>
+            </form>
+            <div class="form-success" id="formSuccess">
+              <span class="form-success-icon">✓</span>
+              <p>Благодаря! Ще се свържа с вас скоро.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -92,9 +159,9 @@
         <p>Премиум фотография и кинематография.</p>
       </div>
       <div class="footer-links">
-        <a href="#">Instagram</a>
-        <a href="#">Vimeo</a>
-        <a href="#">YouTube</a>
+        <a href="https://www.instagram.com/jkphotography_plovdiv" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.facebook.com/JordanKolevPhotography" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://bsvideo.bg/" target="_blank" rel="noopener noreferrer">BS Video</a>
       </div>
     </div>
     <div class="container text-center footer-bottom">
