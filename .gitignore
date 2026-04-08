@@ -12,6 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Original photo folders and archives
+snimkipurvapapka/
+snimkivtorapapka/
+snimkitretapapka/
+snimkichetvurtapapka/
+snimkishestapapka/
+*.zip
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

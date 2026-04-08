@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Портфолио | Йордан Фотография</title>
+  <meta name="description" content="Портфолио на Йордан — сватбена фотография, кръщенета, рождени дни и бизнес фотография." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link href="/src/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <header class="navbar scrolled">
+    <div class="nav-container full-width-nav">
+      <a href="/" class="logo">YORDAN<span>.</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Отвори меню" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <nav class="nav-links" id="nav-links">
+        <a href="/#about" class="nav-link">За мен</a>
+        <a href="/portfolio.html" class="nav-link">Портфолио</a>
+        <a href="/#contact" class="nav-btn">Контакт</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="portfolio-page">
+      <div class="container">
+        <div class="portfolio-tabs" id="portfolio-tabs">
+          <button class="tab-btn active" data-category="wedding">Сватбена фотография</button>
+          <button class="tab-btn" data-category="baptism">Кръщене</button>
+          <button class="tab-btn" data-category="birthday">Рождени дни</button>
+          <button class="tab-btn" data-category="business">Бизнес фотография</button>
+        </div>
+        <div id="gallery-grid" class="gallery-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <button id="lightbox-close" class="lightbox-close" aria-label="Затвори">&times;</button>
+    <button id="lightbox-prev" class="lightbox-nav lightbox-prev" aria-label="Предишна">&lsaquo;</button>
+    <button id="lightbox-next" class="lightbox-nav lightbox-next" aria-label="Следваща">&rsaquo;</button>
+    <img id="lightbox-img" class="lightbox-img" alt="" />
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <a href="/" class="logo">YORDAN<span>.</span></a>
+        <p>Премиум фотография и кинематография.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">Vimeo</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="container text-center footer-bottom">
+      <p>&copy; 2026 Йордан Фотография. Всички права запазени.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/portfolio.js"></script>
+</body>
+
+</html>
