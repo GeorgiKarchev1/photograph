@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   let manifest;
   try {
-    const res = await fetch('/gallery/manifest.json');
+    const res = await fetch('/api/gallery');
     manifest = await res.json();
   } catch {
     grid.innerHTML = '<p style="color:var(--text-muted)">Грешка при зареждане на галерията.</p>';
@@ -62,7 +62,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     currentImages.forEach((img, index) => {
       const item = document.createElement('div');
       item.className = 'gallery-item';
-      item.innerHTML = `<img src="/gallery/${category}/thumb/${img}" alt="" loading="lazy" width="400" height="500" />`;
+      // Blob URLs (new uploads) are used directly; filenames use the static path
+      const thumbSrc = img.startsWith('https://') ? img : `/gallery/${category}/thumb/${img}`;
+      item.innerHTML = `<img src="${thumbSrc}" alt="" loading="lazy" width="400" height="500" />`;
       item.addEventListener('click', () => openLightbox(index));
       grid.appendChild(item);
     });
@@ -81,9 +83,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderGallery('wedding');
 
   // Lightbox
+  function imgSrc(img, category) {
+    return img.startsWith('https://') ? img : `/gallery/${category}/full/${img}`;
+  }
+
   function openLightbox(index) {
     currentIndex = index;
-    lightboxImg.src = `/gallery/${currentCategory}/full/${currentImages[currentIndex]}`;
+    lightboxImg.src = imgSrc(currentImages[currentIndex], currentCategory);
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -96,7 +102,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function navigate(direction) {
     currentIndex = (currentIndex + direction + currentImages.length) % currentImages.length;
-    lightboxImg.src = `/gallery/${currentCategory}/full/${currentImages[currentIndex]}`;
+    lightboxImg.src = imgSrc(currentImages[currentIndex], currentCategory);
   }
 
   lightboxClose.addEventListener('click', closeLightbox);

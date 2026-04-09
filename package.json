@@ -6,12 +6,17 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "admin": "node admin-server.js"
   },
   "devDependencies": {
     "vite": "^7.3.1"
   },
   "dependencies": {
+    "busboy": "^1.6.0",
+    "cloudinary": "^2.9.0",
+    "express": "^4.22.1",
+    "multer": "^1.4.5-lts.1",
     "nodemailer": "^8.0.5",
     "sharp": "^0.34.5"
   }
