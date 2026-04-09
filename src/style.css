@@ -1405,6 +1405,14 @@ a.contact-detail-item:hover {
     font-size: 1rem;
   }
 
+  .location-note {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    line-height: 1.6;
+  }
+
   .stats-row {
     flex-wrap: wrap;
     gap: 24px;
