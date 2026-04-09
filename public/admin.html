@@ -3,315 +3,626 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Панел | Йордан Фотография</title>
+  <title>Admin | Йордан Фотография</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:      #070707; --bg2: #0f0f0f; --bg3: #181818; --bg4: #222;
-      --accent:  #f8f813; --accent2: #c8c80e;
-      --text:    #fff; --muted: #a1a1aa; --border: #2a2a2a;
-      --danger:  #ef4444; --danger-bg: rgba(239,68,68,.12);
-      --success: #22c55e;
-      --r: 12px; --r-sm: 8px; --shadow: 0 8px 32px rgba(0,0,0,.6);
+      --bg:       #080808;
+      --bg2:      #101010;
+      --bg3:      #181818;
+      --bg4:      #202020;
+      --accent:   #f8f813;
+      --accent-dim: rgba(248,248,19,.08);
+      --text:     #f4f4f5;
+      --muted:    #71717a;
+      --muted2:   #52525b;
+      --border:   #27272a;
+      --border2:  #3f3f46;
+      --danger:   #ef4444;
+      --success:  #22c55e;
+      --r:        10px;
+      --r-sm:     7px;
+      --shadow:   0 16px 48px rgba(0,0,0,.7);
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg); color: var(--text);
-      min-height: 100vh; -webkit-font-smoothing: antialiased;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ── LOGIN ── */
+    /* ─────────────── LOGIN ─────────────── */
     #login-screen {
-      display: flex; align-items: center; justify-content: center;
-      min-height: 100vh; padding: 24px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(248,248,19,.06) 0%, transparent 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
     }
     .login-card {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 20px; padding: 48px 44px 44px;
-      width: 100%; max-width: 420px; box-shadow: var(--shadow); text-align: center;
+      width: 100%;
+      max-width: 380px;
     }
-    .login-logo { font-family:'Outfit',sans-serif; font-weight:900; font-size:28px; letter-spacing:-1px; margin-bottom:4px; }
+    .login-brand {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .login-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
     .login-logo span { color: var(--accent); }
-    .login-subtitle { color: var(--muted); font-size:13px; margin-bottom:36px; }
-    .login-card label { display:block; text-align:left; font-size:12px; font-weight:500; color:var(--muted); letter-spacing:.05em; text-transform:uppercase; margin-bottom:8px; }
-    .login-card input[type="password"] {
-      width:100%; background:var(--bg3); border:1.5px solid var(--border);
-      border-radius:var(--r-sm); color:var(--text); font-family:'Inter',sans-serif;
-      font-size:16px; padding:14px 16px; outline:none; transition:border-color .2s;
-      margin-bottom:20px; letter-spacing:2px;
+    .login-role {
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
-    .login-card input[type="password"]:focus { border-color:var(--accent); }
+    .login-field { margin-bottom: 14px; }
+    .login-field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .login-field input {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+      letter-spacing: 3px;
+    }
+    .login-field input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(248,248,19,.1);
+    }
     .btn-login {
-      width:100%; background:var(--accent); color:#000; border:none;
-      border-radius:var(--r-sm); font-family:'Outfit',sans-serif; font-weight:700;
-      font-size:15px; padding:14px; cursor:pointer; transition:background .2s, transform .1s;
+      width: 100%;
+      margin-top: 8px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: var(--r-sm);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .04em;
+      padding: 13px;
+      cursor: pointer;
+      transition: opacity .15s, transform .1s;
     }
-    .btn-login:hover  { background:var(--accent2); }
-    .btn-login:active { transform:scale(.98); }
+    .btn-login:hover  { opacity: .88; }
+    .btn-login:active { transform: scale(.98); }
     .login-error {
-      margin-top:14px; background:var(--danger-bg); border:1px solid rgba(239,68,68,.3);
-      border-radius:var(--r-sm); color:#fca5a5; font-size:13px;
-      padding:10px 14px; display:none;
+      margin-top: 12px;
+      background: rgba(239,68,68,.1);
+      border: 1px solid rgba(239,68,68,.25);
+      border-radius: var(--r-sm);
+      color: #fca5a5;
+      font-size: 13px;
+      padding: 10px 14px;
+      display: none;
+      text-align: center;
     }
-    .login-error.show { display:block; }
-    .login-hint {
-      margin-top:24px; color:var(--muted); font-size:12px; line-height:1.6;
-      border-top:1px solid var(--border); padding-top:20px;
-    }
-    .login-hint strong { color:var(--text); }
+    .login-error.show { display: block; }
 
-    /* ── PANEL ── */
-    #admin-panel { display:none; flex-direction:column; min-height:100vh; }
+    /* ─────────────── TOPBAR ─────────────── */
+    #admin-panel { display: none; flex-direction: column; min-height: 100vh; }
     .topbar {
-      position:sticky; top:0; z-index:100;
-      background:rgba(7,7,7,.92); backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--border);
-      padding:0 32px; height:64px; display:flex; align-items:center; gap:16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 56px;
+      background: rgba(8,8,8,.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
-    .topbar-logo { font-family:'Outfit',sans-serif; font-weight:900; font-size:20px; letter-spacing:-.5px; }
-    .topbar-logo span { color:var(--accent); }
-    .topbar-badge {
-      background:var(--bg3); border:1px solid var(--border); border-radius:9999px;
-      color:var(--muted); font-size:11px; padding:3px 10px; text-transform:uppercase; letter-spacing:.05em;
+    .topbar-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: -.5px;
     }
-    .topbar-spacer { flex:1; }
+    .topbar-logo span { color: var(--accent); }
+    .topbar-sep {
+      width: 1px;
+      height: 16px;
+      background: var(--border2);
+    }
+    .topbar-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .topbar-spacer { flex: 1; }
     .btn-logout {
-      background:transparent; border:1.5px solid var(--border); border-radius:var(--r-sm);
-      color:var(--muted); font-size:13px; padding:7px 16px; cursor:pointer;
-      transition:border-color .2s, color .2s;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 14px;
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
     }
-    .btn-logout:hover { border-color:var(--danger); color:#fca5a5; }
+    .btn-logout:hover { border-color: var(--danger); color: #fca5a5; }
+    .btn-logout svg { flex-shrink: 0; }
 
-    .panel-body { flex:1; padding:32px; max-width:1280px; margin:0 auto; width:100%; }
-
-    /* stats / category tabs */
-    .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:32px; }
-    .stat-card {
-      background:var(--bg2); border:1px solid var(--border); border-radius:var(--r);
-      padding:20px 24px; cursor:pointer; transition:border-color .2s, background .2s;
+    /* ─────────────── BODY ─────────────── */
+    .panel-body {
+      flex: 1;
+      padding: 32px 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
     }
-    .stat-card:hover, .stat-card.active { border-color:var(--accent); background:rgba(248,248,19,.05); }
-    .stat-card.active .stat-num { color:var(--accent); }
-    .stat-label-top { font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:6px; }
-    .stat-num { font-family:'Outfit',sans-serif; font-size:32px; font-weight:900; line-height:1; color:var(--text); transition:color .2s; }
 
-    /* card */
-    .section-card {
-      background:var(--bg2); border:1px solid var(--border); border-radius:var(--r);
-      padding:28px 28px 24px; margin-bottom:28px;
+    /* ─────────────── CATEGORIES ─────────────── */
+    .categories-header {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
     }
-    .section-title { font-family:'Outfit',sans-serif; font-size:16px; font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:10px; }
-    .section-desc { font-size:13px; color:var(--muted); margin-bottom:20px; line-height:1.6; }
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .cat-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 18px 20px;
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+      user-select: none;
+    }
+    .cat-card:hover { background: var(--bg3); border-color: var(--border2); }
+    .cat-card.active {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+    .cat-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color .15s;
+    }
+    .cat-card.active .cat-name { color: var(--text); }
+    .cat-count {
+      font-family: 'Outfit', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--muted2);
+      transition: color .15s;
+    }
+    .cat-card.active .cat-count { color: var(--accent); }
 
-    /* drop zone */
+    /* ─────────────── UPLOAD ─────────────── */
+    .upload-area {
+      margin-bottom: 28px;
+    }
     .drop-zone {
-      border:2px dashed var(--border); border-radius:var(--r); padding:40px 24px;
-      text-align:center; cursor:pointer; transition:border-color .2s, background .2s; position:relative;
+      position: relative;
+      border: 1px dashed var(--border2);
+      border-radius: var(--r);
+      padding: 36px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
     }
-    .drop-zone:hover, .drop-zone.drag-over { border-color:var(--accent); background:rgba(248,248,19,.04); }
-    .drop-zone input[type="file"] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
-    .drop-icon { font-size:40px; margin-bottom:12px; }
-    .drop-title { font-family:'Outfit',sans-serif; font-weight:700; font-size:17px; margin-bottom:6px; }
-    .drop-sub   { color:var(--muted); font-size:13px; }
-    .drop-sub em { color:var(--accent); font-style:normal; }
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+    .drop-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+    .drop-icon {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 14px;
+      color: var(--muted2);
+    }
+    .drop-zone:hover .drop-icon, .drop-zone.drag-over .drop-icon {
+      color: var(--accent);
+    }
+    .drop-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .drop-sub {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .drop-sub strong { color: var(--muted2); font-weight: 500; }
 
     /* progress */
-    .upload-progress { margin-top:20px; display:none; }
-    .progress-bar-bg { background:var(--bg3); border-radius:9999px; height:6px; overflow:hidden; margin-bottom:8px; }
-    .progress-bar-fill { height:100%; background:var(--accent); border-radius:9999px; transition:width .3s ease; width:0%; }
-    .progress-label { font-size:12px; color:var(--muted); }
+    .upload-progress { margin-top: 16px; display: none; }
+    .progress-track {
+      background: var(--bg3);
+      border-radius: 9999px;
+      height: 3px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 9999px;
+      transition: width .3s ease;
+      width: 0%;
+    }
+    .progress-text { font-size: 12px; color: var(--muted); }
 
-    /* gallery */
-    .gallery-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
-    .gallery-count { font-size:13px; color:var(--muted); }
-    .gallery-count strong { color:var(--text); }
-    .photo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:12px; }
+    /* ─────────────── GALLERY ─────────────── */
+    .gallery-bar {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .gallery-bar-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .gallery-bar-count {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 10px;
+    }
     .photo-item {
-      position:relative; border-radius:var(--r-sm); overflow:hidden;
-      background:var(--bg3); aspect-ratio:1; border:1.5px solid var(--border);
-      transition:transform .2s;
+      position: relative;
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      background: var(--bg3);
+      aspect-ratio: 1;
+      border: 1px solid var(--border);
     }
-    .photo-item:hover { transform:scale(1.02); }
-    .photo-item img { width:100%; height:100%; object-fit:cover; display:block; }
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .3s ease;
+    }
+    .photo-item:hover img { transform: scale(1.04); }
     .photo-overlay {
-      position:absolute; inset:0; background:rgba(0,0,0,.55);
-      display:flex; align-items:center; justify-content:center;
-      opacity:0; transition:opacity .2s;
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity .2s;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 10px;
     }
-    .photo-item:hover .photo-overlay { opacity:1; }
+    .photo-item:hover .photo-overlay { opacity: 1; }
     .btn-delete {
-      background:var(--danger); color:#fff; border:none; border-radius:var(--r-sm);
-      font-weight:600; font-size:13px; padding:8px 16px; cursor:pointer;
-      transition:background .15s, transform .1s; display:flex; align-items:center; gap:6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(239,68,68,.9);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: background .15s;
     }
-    .btn-delete:hover  { background:#dc2626; }
-    .btn-delete:active { transform:scale(.96); }
-    .empty-state { grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--muted); }
-    .empty-state .empty-icon { font-size:48px; margin-bottom:12px; }
-    .empty-state p { font-size:14px; }
+    .btn-delete:hover { background: var(--danger); }
 
-    /* toast */
-    #toast-container { position:fixed; bottom:28px; right:28px; z-index:9999; display:flex; flex-direction:column; gap:10px; pointer-events:none; }
+    .empty-state {
+      grid-column: 1 / -1;
+      padding: 72px 20px;
+      text-align: center;
+    }
+    .empty-icon-wrap {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      color: var(--muted2);
+    }
+    .empty-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .empty-sub { font-size: 13px; color: var(--muted2); }
+
+    /* ─────────────── TOAST ─────────────── */
+    #toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
     .toast {
-      background:var(--bg2); border:1px solid var(--border); border-radius:var(--r-sm);
-      padding:14px 18px; font-size:14px; color:var(--text); box-shadow:var(--shadow);
-      display:flex; align-items:center; gap:10px; animation:toast-in .3s ease;
-      min-width:260px; max-width:360px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: var(--r-sm);
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--text);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: slide-up .25s ease;
+      min-width: 240px;
+      max-width: 320px;
     }
-    .toast.success { border-color:rgba(34,197,94,.4); }
-    .toast.error   { border-color:rgba(239,68,68,.4); }
-    .toast-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
-    .toast.success .toast-dot { background:var(--success); }
-    .toast.error   .toast-dot { background:var(--danger); }
-    @keyframes toast-in { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    .toast.success { border-left: 3px solid var(--success); }
+    .toast.error   { border-left: 3px solid var(--danger); }
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-    /* confirm */
+    /* ─────────────── CONFIRM ─────────────── */
     #confirm-overlay {
-      position:fixed; inset:0; background:rgba(0,0,0,.7); backdrop-filter:blur(4px);
-      z-index:999; display:none; align-items:center; justify-content:center; padding:24px;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
     }
-    #confirm-overlay.show { display:flex; }
+    #confirm-overlay.show { display: flex; }
     .confirm-card {
-      background:var(--bg2); border:1px solid var(--border); border-radius:16px;
-      padding:32px 28px 28px; max-width:380px; width:100%;
-      box-shadow:var(--shadow); text-align:center;
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: 14px;
+      padding: 28px;
+      max-width: 360px;
+      width: 100%;
+      box-shadow: var(--shadow);
     }
-    .confirm-icon { font-size:36px; margin-bottom:14px; }
-    .confirm-title { font-family:'Outfit',sans-serif; font-weight:700; font-size:18px; margin-bottom:8px; }
-    .confirm-msg { color:var(--muted); font-size:14px; margin-bottom:24px; line-height:1.6; }
-    .confirm-btns { display:flex; gap:10px; justify-content:center; }
+    .confirm-warning-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .confirm-warning-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--danger);
+      flex-shrink: 0;
+    }
+    .confirm-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .confirm-msg {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .confirm-btns {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
     .btn-cancel {
-      background:transparent; border:1.5px solid var(--border); border-radius:var(--r-sm);
-      color:var(--muted); font-size:14px; font-weight:500; padding:10px 24px;
-      cursor:pointer; transition:border-color .2s, color .2s;
+      background: transparent;
+      border: 1px solid var(--border2);
+      border-radius: var(--r-sm);
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 9px 20px;
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
     }
-    .btn-cancel:hover { border-color:var(--text); color:var(--text); }
+    .btn-cancel:hover { border-color: var(--text); color: var(--text); }
     .btn-confirm-del {
-      background:var(--danger); border:none; border-radius:var(--r-sm);
-      color:#fff; font-size:14px; font-weight:600; padding:10px 24px;
-      cursor:pointer; transition:background .2s;
+      background: var(--danger);
+      border: none;
+      border-radius: var(--r-sm);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 20px;
+      cursor: pointer;
+      transition: opacity .15s;
     }
-    .btn-confirm-del:hover { background:#dc2626; }
+    .btn-confirm-del:hover { opacity: .85; }
 
-    @media (max-width:768px) {
-      .topbar { padding:0 16px; }
-      .panel-body { padding:20px 16px; }
-      .stats-row { grid-template-columns:repeat(2,1fr); }
-      .photo-grid { grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); }
+    /* ─────────────── RESPONSIVE ─────────────── */
+    @media (max-width: 800px) {
+      .topbar { padding: 0 18px; }
+      .panel-body { padding: 24px 18px; }
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width:480px) {
-      .login-card { padding:36px 24px 28px; }
-      .photo-grid { grid-template-columns:repeat(3,1fr); gap:8px; }
+    @media (max-width: 480px) {
+      .categories-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .photo-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
     }
   </style>
 </head>
 <body>
 
-<!-- LOGIN -->
+<!-- ═══════════════ LOGIN ═══════════════ -->
 <div id="login-screen">
   <div class="login-card">
-    <div class="login-logo">YORDAN<span>.</span></div>
-    <div class="login-subtitle">Административен панел</div>
+    <div class="login-brand">
+      <div class="login-logo">YORDAN<span>.</span></div>
+      <div class="login-role">Административен достъп</div>
+    </div>
+
     <form id="login-form">
-      <label for="pwd">Парола</label>
-      <input type="password" id="pwd" placeholder="Въведете паролата" autocomplete="current-password" autofocus />
-      <button type="submit" class="btn-login">Влез в системата</button>
+      <div class="login-field">
+        <label for="pwd">Парола</label>
+        <input type="password" id="pwd" placeholder="••••••••••" autocomplete="current-password" autofocus />
+      </div>
+      <button type="submit" class="btn-login">Влез</button>
       <div class="login-error" id="login-error"></div>
     </form>
-    <div class="login-hint">
-      <strong>Как се сменя паролата?</strong><br>
-      В Vercel → Settings → Environment Variables → намерете <code>ADMIN_PASSWORD</code> и я сменете.
-    </div>
   </div>
 </div>
 
-<!-- PANEL -->
+<!-- ═══════════════ PANEL ═══════════════ -->
 <div id="admin-panel">
   <header class="topbar">
     <span class="topbar-logo">YORDAN<span>.</span></span>
-    <span class="topbar-badge">Admin</span>
+    <div class="topbar-sep"></div>
+    <span class="topbar-label">Портфолио</span>
     <div class="topbar-spacer"></div>
-    <button class="btn-logout" id="btn-logout">Изход</button>
+    <button class="btn-logout" id="btn-logout">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <path d="M5 1.5H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3"/>
+        <path d="M9 9.5l3-3-3-3M12 6.5H5"/>
+      </svg>
+      Изход
+    </button>
   </header>
 
   <div class="panel-body">
-    <!-- Category tabs -->
-    <div class="stats-row" id="stats-row">
-      <div class="stat-card active" data-cat="wedding">
-        <div class="stat-label-top">Сватбена фотография</div>
-        <div class="stat-num" id="count-wedding">—</div>
+
+    <!-- Categories -->
+    <div class="categories-header">Категория</div>
+    <div class="categories-grid" id="categories-grid">
+      <div class="cat-card active" data-cat="wedding">
+        <div class="cat-name">Сватбена фотография</div>
+        <div class="cat-count" id="count-wedding">—</div>
       </div>
-      <div class="stat-card" data-cat="baptism">
-        <div class="stat-label-top">Кръщене</div>
-        <div class="stat-num" id="count-baptism">—</div>
+      <div class="cat-card" data-cat="baptism">
+        <div class="cat-name">Кръщене</div>
+        <div class="cat-count" id="count-baptism">—</div>
       </div>
-      <div class="stat-card" data-cat="birthday">
-        <div class="stat-label-top">Рождени дни</div>
-        <div class="stat-num" id="count-birthday">—</div>
+      <div class="cat-card" data-cat="birthday">
+        <div class="cat-name">Рождени дни</div>
+        <div class="cat-count" id="count-birthday">—</div>
       </div>
-      <div class="stat-card" data-cat="business">
-        <div class="stat-label-top">Бизнес фотография</div>
-        <div class="stat-num" id="count-business">—</div>
+      <div class="cat-card" data-cat="business">
+        <div class="cat-name">Бизнес фотография</div>
+        <div class="cat-count" id="count-business">—</div>
       </div>
     </div>
 
     <!-- Upload -->
-    <div class="section-card">
-      <div class="section-title">📤 Добавяне на снимки</div>
-      <div class="section-desc">
-        Изберете категория (горните блокове), след това плъзнете снимките тук или кликнете.
-        Поддържани формати: <strong>JPG, PNG, WebP, HEIC</strong>.
-      </div>
+    <div class="upload-area">
       <div class="drop-zone" id="drop-zone">
         <input type="file" id="file-input" multiple accept="image/jpeg,image/png,image/webp,image/heic,.heic,.heif" />
-        <div class="drop-icon">🖼️</div>
-        <div class="drop-title">Плъзнете снимките тук</div>
-        <div class="drop-sub">или кликнете, за да изберете от <em>вашия компютър</em></div>
+        <svg class="drop-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 24V12M18 12L13 17M18 12l5 5"/>
+          <path d="M7 28h22"/>
+          <rect x="3" y="6" width="30" height="22" rx="3" stroke-dasharray="0"/>
+        </svg>
+        <div class="drop-title">Плъзнете снимки или кликнете, за да изберете</div>
+        <div class="drop-sub">JPG, PNG, WebP, HEIC &nbsp;·&nbsp; <strong>Избрана категория: <span id="selected-cat-name">Сватбена фотография</span></strong></div>
       </div>
       <div class="upload-progress" id="upload-progress">
-        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
-        <div class="progress-label" id="progress-label">Качване...</div>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+        <div class="progress-text" id="progress-label"></div>
       </div>
     </div>
 
     <!-- Gallery -->
-    <div class="section-card">
-      <div class="gallery-header">
-        <div>
-          <div class="section-title">🗂️ <span id="gallery-title">Сватбена фотография</span></div>
-          <div class="gallery-count">Общо: <strong id="gallery-count">0</strong> снимки</div>
+    <div class="gallery-bar">
+      <span class="gallery-bar-title" id="gallery-title">Сватбена фотография</span>
+      <span class="gallery-bar-count"><span id="gallery-count">0</span> снимки</span>
+    </div>
+    <div class="photo-grid" id="photo-grid">
+      <div class="empty-state">
+        <div class="empty-icon-wrap">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="12" width="40" height="28" rx="4"/>
+            <circle cx="24" cy="26" r="7"/>
+            <path d="M16 12l2.5-5h7L28 12"/>
+            <circle cx="36" cy="19" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
         </div>
-      </div>
-      <div class="photo-grid" id="photo-grid">
-        <div class="empty-state"><div class="empty-icon">📷</div><p>Зареждане...</p></div>
+        <div class="empty-title">Зареждане...</div>
       </div>
     </div>
 
-    <!-- Guide -->
-    <div class="section-card" style="border-style:dashed; background:transparent;">
-      <div class="section-title" style="font-size:14px; color:var(--muted);">📖 Кратко ръководство</div>
-      <div style="margin-top:12px; display:grid; gap:12px; font-size:13px; color:var(--muted); line-height:1.7;">
-        <div><strong style="color:var(--text);">1. Избор на категория</strong> — Кликнете върху един от четирите блока горе (Сватбена, Кръщене, Рождени дни, Бизнес). Избраният светва в жълто.</div>
-        <div><strong style="color:var(--text);">2. Добавяне на снимки</strong> — Плъзнете снимките в зоната или кликнете и изберете файловете от компютъра. Можете да качвате много наведнъж. Снимките веднага се добавят в избраната категория.</div>
-        <div><strong style="color:var(--text);">3. Изтриване на снимки</strong> — Задръжте мишката върху снимка — появява се червен бутон „Изтрий". Ще ви поиска потвърждение. <strong style="color:#fca5a5;">Изтритото не може да се върне!</strong></div>
-        <div><strong style="color:var(--text);">4. Промените са веднага видими</strong> — Добавените и изтритите снимки се виждат на сайта веднага.</div>
-        <div><strong style="color:var(--text);">5. Admin панелът</strong> — Достъпен само на адрес <code style="background:var(--bg3); padding:2px 6px; border-radius:4px; color:var(--accent);">вашият-сайт.vercel.app/admin.html</code></div>
-      </div>
-    </div>
   </div>
 </div>
 
-<!-- CONFIRM DIALOG -->
+<!-- ═══════════════ CONFIRM ═══════════════ -->
 <div id="confirm-overlay">
   <div class="confirm-card">
-    <div class="confirm-icon">🗑️</div>
-    <div class="confirm-title">Изтриване на снимка</div>
-    <div class="confirm-msg">Сигурни ли сте? Снимката ще бъде изтрита завинаги и не може да бъде възстановена.</div>
+    <div class="confirm-warning-bar">
+      <svg class="confirm-warning-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 1L1 16h16L9 1z"/>
+        <path d="M9 7v4M9 13.5v.5"/>
+      </svg>
+      <span class="confirm-title">Изтриване на снимка</span>
+    </div>
+    <div class="confirm-msg">Снимката ще бъде изтрита окончателно и не може да бъде възстановена.</div>
     <div class="confirm-btns">
       <button class="btn-cancel" id="confirm-cancel">Отказ</button>
       <button class="btn-confirm-del" id="confirm-ok">Изтрий</button>
@@ -322,8 +633,8 @@
 <div id="toast-container"></div>
 
 <script>
-let manifest = {};
-let currentCat = 'wedding';
+let manifest    = {};
+let currentCat  = 'wedding';
 const CATS = {
   wedding:  'Сватбена фотография',
   baptism:  'Кръщене',
@@ -331,15 +642,16 @@ const CATS = {
   business: 'Бизнес фотография',
 };
 
+// ── toasts ──────────────────────────────────────────────────────────────────
 function toast(msg, type = 'success') {
   const el = document.createElement('div');
   el.className = `toast ${type}`;
-  el.innerHTML = `<div class="toast-dot"></div><span>${msg}</span>`;
+  el.textContent = msg;
   document.getElementById('toast-container').appendChild(el);
-  setTimeout(() => el.remove(), 3800);
+  setTimeout(() => el.remove(), 3600);
 }
 
-// ── auth ──────────────────────────────────────────────────────────────────
+// ── auth ─────────────────────────────────────────────────────────────────────
 document.getElementById('login-form').addEventListener('submit', async e => {
   e.preventDefault();
   const pwd = document.getElementById('pwd').value;
@@ -369,8 +681,7 @@ document.getElementById('btn-logout').addEventListener('click', async () => {
 (async () => {
   try {
     const r = await fetch('/api/me');
-    const d = await r.json();
-    if (d.loggedIn) showPanel();
+    if ((await r.json()).loggedIn) showPanel();
   } catch (_) {}
 })();
 
@@ -380,13 +691,13 @@ async function showPanel() {
   await loadGallery();
 }
 
-// ── gallery ───────────────────────────────────────────────────────────────
+// ── gallery ──────────────────────────────────────────────────────────────────
 async function loadGallery() {
   try {
     const r = await fetch('/api/gallery');
     manifest = await r.json();
   } catch {
-    toast('Грешка при зареждане на галерията.', 'error'); return;
+    toast('Грешка при зареждане.', 'error'); return;
   }
   updateCounts();
   renderGrid(currentCat);
@@ -399,19 +710,21 @@ function updateCounts() {
   });
 }
 
-document.getElementById('stats-row').addEventListener('click', e => {
-  const card = e.target.closest('.stat-card');
+document.getElementById('categories-grid').addEventListener('click', e => {
+  const card = e.target.closest('.cat-card');
   if (!card) return;
-  document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
   card.classList.add('active');
   currentCat = card.dataset.cat;
+  document.getElementById('selected-cat-name').textContent = CATS[currentCat];
   renderGrid(currentCat);
 });
 
-function thumbUrl(imageId, cat) {
-  if (imageId.startsWith('https://')) return imageId;
-  return `/gallery/${cat}/thumb/${imageId}`;
+function thumbUrl(id, cat) {
+  return id.startsWith('https://') ? id : `/gallery/${cat}/thumb/${id}`;
 }
+
+const DELETE_SVG = `<svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 1l9 9M10 1L1 10"/></svg>`;
 
 function renderGrid(cat) {
   document.getElementById('gallery-title').textContent = CATS[cat];
@@ -422,7 +735,19 @@ function renderGrid(cat) {
   grid.onclick = null;
 
   if (!images.length) {
-    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">📷</div><p>Няма снимки. Добавете от зоната по-горе.</p></div>`;
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon-wrap">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="12" width="40" height="28" rx="4"/>
+            <circle cx="24" cy="26" r="7"/>
+            <path d="M16 12l2.5-5h7L28 12"/>
+            <circle cx="36" cy="19" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div class="empty-title">Няма снимки в тази категория</div>
+        <div class="empty-sub">Качете снимки от зоната по-горе</div>
+      </div>`;
     return;
   }
 
@@ -432,7 +757,9 @@ function renderGrid(cat) {
     item.innerHTML = `
       <img src="${thumbUrl(id, cat)}" alt="" loading="lazy" />
       <div class="photo-overlay">
-        <button class="btn-delete" data-cat="${cat}" data-id="${encodeURIComponent(id)}">🗑️ Изтрий</button>
+        <button class="btn-delete" data-cat="${cat}" data-id="${encodeURIComponent(id)}">
+          ${DELETE_SVG} Изтрий
+        </button>
       </div>`;
     grid.appendChild(item);
   });
@@ -445,24 +772,22 @@ function renderGrid(cat) {
   });
 }
 
-// ── delete ────────────────────────────────────────────────────────────────
+// ── delete ───────────────────────────────────────────────────────────────────
 let pendingDelete = null;
 
-document.getElementById('confirm-cancel').addEventListener('click', () => {
+function closeConfirm() {
   document.getElementById('confirm-overlay').classList.remove('show');
   pendingDelete = null;
-});
+}
+document.getElementById('confirm-cancel').addEventListener('click', closeConfirm);
 document.getElementById('confirm-overlay').addEventListener('click', e => {
-  if (e.target === document.getElementById('confirm-overlay')) {
-    document.getElementById('confirm-overlay').classList.remove('show');
-    pendingDelete = null;
-  }
+  if (e.target === document.getElementById('confirm-overlay')) closeConfirm();
 });
+
 document.getElementById('confirm-ok').addEventListener('click', async () => {
   if (!pendingDelete) return;
-  document.getElementById('confirm-overlay').classList.remove('show');
+  closeConfirm();
   const { cat, id } = pendingDelete;
-  pendingDelete = null;
   try {
     const r = await fetch('/api/delete', {
       method: 'DELETE',
@@ -473,12 +798,14 @@ document.getElementById('confirm-ok').addEventListener('click', async () => {
       manifest[cat] = (manifest[cat] || []).filter(x => x !== id);
       updateCounts();
       renderGrid(cat);
-      toast('Снимката е изтрита успешно.');
-    } else { toast('Грешка при изтриване.', 'error'); }
+      toast('Снимката е изтрита.');
+    } else {
+      toast('Грешка при изтриване.', 'error');
+    }
   } catch { toast('Грешка при свързване.', 'error'); }
 });
 
-// ── upload ────────────────────────────────────────────────────────────────
+// ── upload ───────────────────────────────────────────────────────────────────
 const dropZone  = document.getElementById('drop-zone');
 const fileInput = document.getElementById('file-input');
 
@@ -502,36 +829,38 @@ async function uploadFiles(files) {
 
   progressEl.style.display = 'block';
   fillEl.style.width = '5%';
-  labelEl.textContent = `Качване на ${files.length} снимк${files.length === 1 ? 'а' : 'и'}...`;
+  labelEl.textContent = `Качване на ${files.length} ${files.length === 1 ? 'снимка' : 'снимки'}...`;
 
   const fd = new FormData();
   files.forEach(f => fd.append('images', f));
 
   let fake = 5;
-  const ticker = setInterval(() => { fake = Math.min(fake + 3, 80); fillEl.style.width = fake + '%'; }, 250);
+  const ticker = setInterval(() => { fake = Math.min(fake + 3, 80); fillEl.style.width = fake + '%'; }, 280);
 
   try {
-    const r = await fetch(`/api/upload?category=${currentCat}`, { method: 'POST', body: fd });
+    const r    = await fetch(`/api/upload?category=${currentCat}`, { method: 'POST', body: fd });
     clearInterval(ticker);
     const data = await r.json();
 
     fillEl.style.width = '100%';
-    labelEl.textContent = `Готово! Добавени: ${data.uploaded?.length || 0} снимки.`;
+    const n = data.uploaded?.length || 0;
+    labelEl.textContent = n ? `${n} ${n === 1 ? 'снимка добавена' : 'снимки добавени'}.` : 'Готово.';
 
-    if (data.uploaded?.length) {
+    if (n > 0) {
       if (!manifest[currentCat]) manifest[currentCat] = [];
       manifest[currentCat].push(...data.uploaded);
       updateCounts();
       renderGrid(currentCat);
-      toast(`✅ ${data.uploaded.length} снимк${data.uploaded.length === 1 ? 'а добавена' : 'и добавени'}!`);
+      toast(`${n} ${n === 1 ? 'снимка добавена' : 'снимки добавени'} успешно.`);
     }
     data.errors?.forEach(e => toast(`Грешка: ${e.file}`, 'error'));
   } catch {
     clearInterval(ticker);
     toast('Грешка при качване.', 'error');
-    labelEl.textContent = 'Грешка.';
+    labelEl.textContent = 'Неуспешно качване.';
   }
-  setTimeout(() => { progressEl.style.display = 'none'; fillEl.style.width = '0%'; }, 2500);
+
+  setTimeout(() => { progressEl.style.display = 'none'; fillEl.style.width = '0%'; }, 2800);
 }
 </script>
 </body>
