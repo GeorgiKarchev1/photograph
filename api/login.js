@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       'Set-Cookie',
       `admin_token=${encodeURIComponent(token)}; HttpOnly; Path=/; Max-Age=86400; SameSite=Strict`
     );
-    return res.json({ success: true });
+    return res.json({ success: true, token });
   }
 
   res.status(401).json({ error: 'Грешна парола. Опитайте отново.' });

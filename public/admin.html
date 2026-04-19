@@ -663,7 +663,11 @@ document.getElementById('login-form').addEventListener('submit', async e => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password: pwd }),
     });
-    if (r.ok) { showPanel(); return; }
+    if (r.ok) {
+      const d = await r.json();
+      if (d.token) sessionStorage.setItem('admin_token', d.token);
+      showPanel(); return;
+    }
     const d = await r.json();
     err.textContent = d.error || 'Грешна парола.';
     err.classList.add('show');
@@ -680,7 +684,7 @@ document.getElementById('btn-logout').addEventListener('click', async () => {
 
 (async () => {
   try {
-    const r = await fetch('/api/me');
+    const r = await fetch('/api/me', { headers: authHeaders() });
     if ((await r.json()).loggedIn) showPanel();
   } catch (_) {}
 })();
@@ -689,6 +693,25 @@ async function showPanel() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('admin-panel').style.display  = 'flex';
   await loadGallery();
+}
+
+// ── session helpers ───────────────────────────────────────────────────────────
+function getToken() { return sessionStorage.getItem('admin_token') || ''; }
+function authHeaders() { return { 'X-Admin-Token': getToken() }; }
+
+function handleUnauthorized() {
+  sessionStorage.removeItem('admin_token');
+  document.getElementById('admin-panel').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('login-error').textContent = 'Сесията изтече. Влезте отново.';
+  document.getElementById('login-error').classList.add('show');
+}
+
+async function apiFetch(url, options = {}) {
+  options.headers = { ...options.headers, ...authHeaders() };
+  const r = await fetch(url, options);
+  if (r.status === 401) { handleUnauthorized(); return null; }
+  return r;
 }
 
 // ── gallery ──────────────────────────────────────────────────────────────────
@@ -789,11 +812,12 @@ document.getElementById('confirm-ok').addEventListener('click', async () => {
   closeConfirm();
   const { cat, id } = pendingDelete;
   try {
-    const r = await fetch('/api/delete', {
+    const r = await apiFetch('/api/delete', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ category: cat, imageId: id }),
     });
+    if (!r) return;
     if (r.ok) {
       manifest[cat] = (manifest[cat] || []).filter(x => x !== id);
       updateCounts();
@@ -838,13 +862,21 @@ async function uploadFiles(files) {
   const ticker = setInterval(() => { fake = Math.min(fake + 3, 80); fillEl.style.width = fake + '%'; }, 280);
 
   try {
-    const r    = await fetch(`/api/upload?category=${currentCat}`, { method: 'POST', body: fd });
+    const r = await apiFetch(`/api/upload?category=${currentCat}`, { method: 'POST', body: fd });
     clearInterval(ticker);
-    const data = await r.json();
 
+    if (!r) { labelEl.textContent = 'Сесията изтече.'; return; }
+    if (!r.ok) {
+      fillEl.style.width = '100%';
+      labelEl.textContent = 'Грешка при качване.';
+      toast('Грешка при качване.', 'error');
+      return;
+    }
+
+    const data = await r.json();
     fillEl.style.width = '100%';
     const n = data.uploaded?.length || 0;
-    labelEl.textContent = n ? `${n} ${n === 1 ? 'снимка добавена' : 'снимки добавени'}.` : 'Готово.';
+    labelEl.textContent = n ? `${n} ${n === 1 ? 'снимка добавена' : 'снимки добавени'}.` : 'Неуспешно качване.';
 
     if (n > 0) {
       if (!manifest[currentCat]) manifest[currentCat] = [];

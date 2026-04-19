@@ -39,5 +39,7 @@ export function parseCookies(req) {
 
 export function requireAuth(req) {
   const { admin_token } = parseCookies(req);
-  return verifyToken(admin_token || '');
+  if (verifyToken(admin_token || '')) return true;
+  const header = req.headers['x-admin-token'] || '';
+  return verifyToken(header);
 }

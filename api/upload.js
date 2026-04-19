@@ -47,10 +47,14 @@ export default function handler(req, res) {
     }
 
     if (uploaded.length > 0) {
-      const manifest = await getManifest(req);
-      if (!manifest[category]) manifest[category] = [];
-      manifest[category].push(...uploaded);
-      await saveManifest(manifest);
+      try {
+        const manifest = await getManifest(req);
+        if (!manifest[category]) manifest[category] = [];
+        manifest[category].push(...uploaded);
+        await saveManifest(manifest);
+      } catch (err) {
+        errors.push({ file: 'manifest', error: err.message });
+      }
     }
 
     res.json({ uploaded, errors });

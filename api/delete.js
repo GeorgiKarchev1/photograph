@@ -14,17 +14,19 @@ export default async function handler(req, res) {
 
   if (!category || !imageId) return res.status(400).json({ error: 'Липсват параметри.' });
 
-  // Delete from Cloudinary only if it's a Cloudinary URL (new upload)
   if (imageId.startsWith('https://res.cloudinary.com/')) {
     try { await deleteImage(imageId); } catch (_) {}
   }
-  // Static filenames (original portfolio images) are just removed from manifest
 
-  const manifest = await getManifest(req);
-  if (manifest[category]) {
-    manifest[category] = manifest[category].filter(id => id !== imageId);
+  try {
+    const manifest = await getManifest(req);
+    if (manifest[category]) {
+      manifest[category] = manifest[category].filter(id => id !== imageId);
+    }
+    await saveManifest(manifest);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
   }
-  await saveManifest(manifest);
 
   res.json({ success: true });
 }
