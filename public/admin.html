@@ -787,12 +787,12 @@ function renderGrid(cat) {
     grid.appendChild(item);
   });
 
-  grid.addEventListener('click', e => {
+  grid.onclick = e => {
     const btn = e.target.closest('.btn-delete');
     if (!btn) return;
     pendingDelete = { cat: btn.dataset.cat, id: decodeURIComponent(btn.dataset.id) };
     document.getElementById('confirm-overlay').classList.add('show');
-  });
+  };
 }
 
 // ── delete ───────────────────────────────────────────────────────────────────
@@ -809,8 +809,8 @@ document.getElementById('confirm-overlay').addEventListener('click', e => {
 
 document.getElementById('confirm-ok').addEventListener('click', async () => {
   if (!pendingDelete) return;
-  closeConfirm();
   const { cat, id } = pendingDelete;
+  closeConfirm();
   try {
     const r = await apiFetch('/api/delete', {
       method: 'DELETE',
