@@ -353,6 +353,10 @@
       padding: 10px;
     }
     .photo-item:hover .photo-overlay { opacity: 1; }
+    @media (hover: none) {
+      .photo-overlay { opacity: 1; }
+      .photo-item img { transform: none !important; }
+    }
     .btn-delete {
       display: flex;
       align-items: center;
@@ -665,7 +669,7 @@ document.getElementById('login-form').addEventListener('submit', async e => {
     });
     if (r.ok) {
       const d = await r.json();
-      if (d.token) sessionStorage.setItem('admin_token', d.token);
+      if (d.token) localStorage.setItem('admin_token', d.token);
       showPanel(); return;
     }
     const d = await r.json();
@@ -678,6 +682,7 @@ document.getElementById('login-form').addEventListener('submit', async e => {
 });
 
 document.getElementById('btn-logout').addEventListener('click', async () => {
+  localStorage.removeItem('admin_token');
   await fetch('/api/logout', { method: 'POST' });
   location.reload();
 });
@@ -696,11 +701,11 @@ async function showPanel() {
 }
 
 // ── session helpers ───────────────────────────────────────────────────────────
-function getToken() { return sessionStorage.getItem('admin_token') || ''; }
+function getToken() { return localStorage.getItem('admin_token') || ''; }
 function authHeaders() { return { 'X-Admin-Token': getToken() }; }
 
 function handleUnauthorized() {
-  sessionStorage.removeItem('admin_token');
+  localStorage.removeItem('admin_token');
   document.getElementById('admin-panel').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('login-error').textContent = 'Сесията изтече. Влезте отново.';
